@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import "./Searchbar.css"
 
-function Searchbar() {
+function Searchbar({type,name,value,onChange,placeholder, handleClick, buttonType}) {
     const [query, setQuery] = useState('');
 
     return (
@@ -10,9 +11,9 @@ function Searchbar() {
             name="search"
             value={query}
             onChange={(e)=> setQuery(e.target.value)}
-            placeholder="zoek je favo music"
+            placeholder=""
         />
-           <button type="submit"> search</button>
+           <button type={buttonType} onClick={handleClick}> Testing</button>
        </span>
     );
 }

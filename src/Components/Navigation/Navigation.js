@@ -18,6 +18,10 @@ function Navigation(props) {
                     </li>
                     <li>
                         <NavLink className={({isActive})=> isActive ? 'active-menu-link': 'default-menu-link'}
+                                 to={"/library"}>Library</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className={({isActive})=> isActive ? 'active-menu-link': 'default-menu-link'}
                         to={"/login"}>Login</NavLink>
                     </li>
                     <li>

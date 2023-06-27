@@ -8,6 +8,7 @@ import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
 import Navigation from "./Components/Navigation/Navigation";
 import Search from "./Pages/Search/Search";
+import Library from "./Pages/Library/Library";
 
 
 
@@ -24,6 +25,7 @@ return (
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/search" element={<Search/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/library" element={<Library/>}/>
             </Routes>
 
         </>

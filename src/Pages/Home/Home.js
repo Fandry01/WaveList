@@ -23,7 +23,7 @@ function Home() {
                 </span>
             </div>
             <div className="right-head">
-            <p>Right-side</p>
+
             </div>
         </div>
     );
