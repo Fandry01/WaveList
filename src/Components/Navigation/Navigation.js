@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {NavLink} from "react-router-dom";
 import './Navigation.css';
-function Navigation(props) {
+import Button from "../Button/Button";
+import {AuthContext} from "../../Context/AuthContext";
+function Navigation() {
+    const {isAuth,logout} = useContext(AuthContext);
+
     return (
         <nav>
             <div className="nav-box">
@@ -28,8 +32,9 @@ function Navigation(props) {
                         <NavLink className={({isActive})=> isActive ? 'active-menu-link': 'default-menu-link'}
                         to={"/register"}>Register</NavLink>
                     </li>
-                    <button type="button">Log in</button>
                 </ul>
+                {isAuth &&
+                <Button buttonType="button" handleClick={logout} variant="logout-button">logout</Button>}
             </div>
         </nav>
     );

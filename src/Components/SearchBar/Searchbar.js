@@ -1,19 +1,18 @@
 import React, {useState} from 'react';
 import "./Searchbar.css"
 
-function Searchbar({type,name,value,onChange,placeholder, handleClick, buttonType}) {
-    const [query, setQuery] = useState('');
+function Searchbar({type,barName,inputValue,changeHandler,placeholderValue,}) {
+
 
     return (
        <span className="searchbar">
         <input
             type="text"
-            name="search"
-            value={query}
-            onChange={(e)=> setQuery(e.target.value)}
-            placeholder=""
+            name={barName}
+            value={inputValue}
+            onChange={changeHandler}
+            placeholder={placeholderValue}
         />
-           <button type={buttonType} onClick={handleClick}> Testing</button>
        </span>
     );
 }
