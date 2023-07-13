@@ -1,27 +1,68 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import axios from "axios";
 export const AccessContext = createContext(null);
 function SpotifyAuthContextProvider({children}) {
     const [access, setAccess] = useState({
     isAccess:false,
 });
+    const [spotifyToken, setSpotifyToken] = useState("");
+    const spotify_client_id = '23765694ea9d4e41a76fca78df125f67';
+    const spotify_client_secret = '9e8d35a5b3754daa93e373f9cf8b9ca3';
+    const redirect_uri ="http://localhost:3000";
+
+
+const [accessToken,setAccessToken] = useState('');
 
 const navigate = useNavigate();
 
-function spotifyLogin(jwt_token){
-    console.log(jwt_token)
-    const decodedToken = jwt_decode(jwt_token);
-    console.log(decodedToken)
-    setAccess({
-        ...access,
-        isAccess: true
-    })
-}
+    function getTokenFromUrl () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        return code
+
+    }
+    useEffect(()=>{
+
+        console.log("dit halen we uit de url",getTokenFromUrl())
+        //spotify token
+        const _spotifyToken = getTokenFromUrl();
+        console.log("dit is de spotifyAuthToken",_spotifyToken);
+
+        if(_spotifyToken) {
+            setSpotifyToken(_spotifyToken);
+            console.log(spotifyToken);
+        }
+    },[getTokenFromUrl])
+
+    useEffect(()=>{
+        async function getAccessCode(){
+            console.log(spotifyToken)
+            try{
+                const res = await axios.post(
+                    'https://accounts.spotify.com/api/token', null, {
+                        params: {
+                            'grant_type': 'authorization_code',
+                            'code':`${spotifyToken}`,
+                            'redirect_uri': `${redirect_uri}`,
+                            'client_id': `${spotify_client_id}`,
+                            'client_secret': `${spotify_client_secret}`
+                        }
+                    });
+                console.log(res)
+                setAccessToken(res.data.access_token)
+            }catch (e){
+                console.error(e)
+            }
+        }getAccessCode()
+    },[spotifyToken])
+
+
 const data ={
     access:access.isAccess,
-    spotifyLogin:spotifyLogin
-
+    spotifyLogin:getTokenFromUrl,
+    accessToken:accessToken
 }
 
     return (

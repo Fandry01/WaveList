@@ -13,11 +13,13 @@ function AuthContextProvider({children}) {
     });
 
     const navigate = useNavigate();
-useEffect(()=>{
-    const storedToken = localStorage.getItem('token')
+
+    useEffect(()=>{
+    const storedToken = localStorage.getItem('token');
 
     if(storedToken && checkTokenValidity(storedToken)){
         void login(storedToken)
+
     }else{
         setAuth({
             ...auth,
@@ -27,8 +29,9 @@ useEffect(()=>{
         })
     }
 },[])
+
 function login(jwt_token, redirect){
-    const decodedToken = jwt_decode(jwt_token)
+    const decodedToken = jwt_decode(jwt_token);
     localStorage.setItem('token', jwt_token);
     setAuth({
         ...auth,
@@ -43,6 +46,7 @@ function login(jwt_token, redirect){
     console.log("gebruiker is ingelogd.");
     if(redirect)navigate(redirect);
 }
+
 function logout(){
     localStorage.removeItem('token');
     setAuth({
@@ -50,9 +54,10 @@ function logout(){
         isAuth: false,
         user:null
     });
-    console.log('gebruiker is uitgelogd.')
-    navigate('/')
+    console.log('gebruiker is uitgelogd.');
+    navigate('/');
 }
+
 const data = {
     isAuth: auth.isAuth,
     user: auth.user,
