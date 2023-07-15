@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import axios from "axios";
 import './Register.css';
 import Button from "../../Components/Button/Button";
+import Footer from "../../Components/Footer/Footer";
 
 function Register() {
     const [email,setEmail] = useState('')
@@ -43,6 +44,7 @@ function Register() {
                             Registratie is mislukt probeer opnieuw.
                         </span>}
                 </div>
+            <Footer/>
         </>
     );
 }

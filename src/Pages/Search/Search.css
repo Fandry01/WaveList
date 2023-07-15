@@ -1,7 +1,7 @@
 *{
     width: 100%;
-}
 
+}
 .searchbar-wrapper{
     display: flex;
     flex-direction: row;
@@ -15,12 +15,18 @@
     align-items: center;
     width: 80%;
     margin-top: 20px;
+
 }
 .searchbar input{
     padding-left: 10px;
     border-radius: 20px;
-    border:1px solid;
+    border: none;
     height: 30px;
+    background-color: #5A5A5A;
+
+}
+input::placeholder {
+    color: white;
 }
 .searchButton{
     border-radius: 15px;
@@ -39,6 +45,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    height: 700px;
 }
 
 .card{

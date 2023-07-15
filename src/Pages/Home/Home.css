@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+body{
+   background-color: black;
+}
+
 .Home-wrapper{
-    background-image: linear-gradient(to bottom, #000000, #434343);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -38,6 +41,7 @@
 .homebutton{
     width:150px;
     border: 1px solid white;
+    max-height:40px ;
     background: rgba(0,0,0,0.2);
     color: white;
 }
@@ -60,7 +64,28 @@
     background-image: url("../../Assets/img/pexels-yente-van-eynde-2403054.jpg");
     background-size: cover;
     padding: 10rem 0 0;
-    width: 35ch;
+    width: 40ch;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: transform 500ms ease;
+    max-height: 300px;
+    text-align: center;
+}
+.home-card2{
+    background-image: url("../../Assets/img/pexels-josh-sorenson-995301.jpg");
+    background-size: cover;
+    padding: 10rem 0 0;
+    width: 36ch;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: transform 500ms ease;
+    max-height: 300px;
+}
+.home-card3{
+    background-image: url("../../Assets/img/pexels-tirachard-kumtanom-1001850.jpg");
+    background-size: cover;
+    padding: 10rem 0 0;
+    width: 36ch;
     border-radius: 0.5rem;
     overflow: hidden;
     transition: transform 500ms ease;
@@ -70,9 +95,17 @@
     transform: scale(1.05);
 
 }
+.home-card2:hover{
+    transform: scale(1.05);
+
+}
+.home-card3:hover{
+    transform: scale(1.05);
+
+}
 
 .card-content{
-    --padding: 1.5rem;
+    --padding: 0.5rem;
     padding: var(--padding);
     background: linear-gradient(
     hsl(0 0% 0% / 0),
@@ -102,17 +135,35 @@
 .card:hover .card.card-title::after{
     transform: scale(1);
 }
-.card-button{
-    cursor: pointer;
-    border-radius: 1rem;
-    text-decoration: none;
-    padding: 0.5em 1.25em;
-    background: springgreen;
-}
+
 .card-button:hover,
 .card-button:focus{
     background-color: white;
 }
 
-
+.faq{
+    color: white;
+    width: 100%;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+.faq-title{
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+}
+.faq article{
+    text-align: center;
+}
+.faq article h4{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+}
+.footer{
+    border-top: 1px solid
+}
 

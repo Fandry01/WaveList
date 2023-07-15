@@ -4,6 +4,7 @@ import axios from "axios";
 import Button from "../../Components/Button/Button";
 import "./Login.css";
 import {AccessContext} from "../../Context/SpotifyAuth";
+import Footer from "../../Components/Footer/Footer";
 
 
 const spotify_client_id = '23765694ea9d4e41a76fca78df125f67';
@@ -54,85 +55,12 @@ function Login() {
         "user-modify-playback-state",
         "user-read-currently-playing",
         "playlist-modify-public",
+        "user-read-playback-state",
         "app-remote-control",
         "streaming"
     ]
 
     const loginUrl = `https://accounts.spotify.com/authorize?client_id=${spotify_client_id}&redirect_uri=${redirect_uri}&scopes=${scopes.join("%20")}&response_type=code&show_dialogue=true`
-
-
-    //get spotify authorization code from url
-    function getTokenFromUrl () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code');
-        return code
-
-    }
-
-
-
-//
-// function getTokenFromUrl () {
-//     return window.location.hash
-//         .substring(1)
-//         .split('&')
-//         .reduce((initial, item) => {
-//             let parts = item.split("=");
-//             initial[parts[0]] = decodeURIComponent(parts[1])
-//             return initial
-//         }, {});
-//
-// }
-// useEffect(()=>{
-//
-//     console.log("dit halen we uit de url",getTokenFromUrl())
-//     //spotify token
-//     const _spotifyToken = getTokenFromUrl().access_token;
-//     window.location.hash="";
-//     console.log("dit is de spotifytoken",_spotifyToken);
-//
-//     if(_spotifyToken){
-//         setSpotifyToken(_spotifyToken);
-//         async function getAccessCode(){
-//             try{
-//                 const res = await axios.post(
-//                     'https://accounts.spotify.com/api/token', null, {
-//                         params: {
-//                             'grant_type': 'authorization_code',
-//                             'code':`${spotifyToken}`,
-//                             'redirect_uri': 'http://localhost:3000',
-//                             'client_id': `${spotify_client_id}`,
-//                             'client_secret': `${spotify_client_secret}`
-//                         }
-//                     });
-//                 setAccessToken(res.data.access_token)
-//                 console.log(res);
-//             }catch (e){
-//                 console.error(e)
-//             }
-//         }
-//         getAccessCode();
-//
-//
-//         async function getUserid(){
-//             try{
-//                 console.log(accessToken);
-//                 const response =  await axios.get('https://api.spotify.com/v1/me', {
-//                     headers: {
-//                         'Authorization': 'Bearer' + accessToken
-//                     }
-//                 });
-//                 console.log(response)
-//
-//             }catch (e) {
-//                 console.log(e);
-//             }
-//
-//         }
-//         getUserid()
-//
-//     }
-// })
 
 
 
@@ -157,9 +85,12 @@ function Login() {
                 </div>
 
                 :
-                <a href={loginUrl} onClick={spotifyLogin} className="signInButton">Sign in with spotify</a>
-            }
+                <div className="signInWrapper">
+                    <a href={loginUrl} onClick={spotifyLogin} className="signInButton">Sign in with spotify</a>
+                </div>
 
+            }
+            <Footer/>
         </>
     );
 }

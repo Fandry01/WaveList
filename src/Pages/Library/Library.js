@@ -1,13 +1,16 @@
     import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import {AccessContext} from "../../Context/SpotifyAuth";
+    import Footer from "../../Components/Footer/Footer";
+    import "./Library.css"
+    import Button from "../../Components/Button/Button";
 function Library() {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const[playlist,setPlaylists] = useState([]);
     const {accessToken} = useContext(AccessContext);
-
+    console.log(accessToken)
 
     async function createPlayList(e) {
         e.preventDefault();
@@ -37,13 +40,13 @@ function Library() {
     useEffect(()=>{
         async function allPlaylists(){
             try{
-                const playlists = await axios.get('https://api.spotify.com/v1/me/playlists', {
+                const getPlaylists = await axios.get('https://api.spotify.com/v1/me/playlists', {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     }
                 })
-                console.log(playlists.data.items);
-                setPlaylists(playlists)
+                console.log(getPlaylists.data.items);
+                setPlaylists(getPlaylists.data.items);
             }
             catch (e){
 
@@ -63,14 +66,14 @@ function Library() {
             <h3> Create A New Playlist</h3>
 
             <form onSubmit={createPlayList} className="playlist-maker">
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)}
+                <input className="input-play" type="text" value={name} onChange={(e) => setName(e.target.value)}
                        placeholder="Name of Playlist"/>
-                <input type="text" value={description} onChange={(e) => setDescription(e.target.value)}
+                <input className="input-play" type="text" value={description} onChange={(e) => setDescription(e.target.value)}
                        placeholder="Description of Playlist"/>
-                <button type="submit">Create</button>
+                <Button buttonType="submit" variant="list-button">Create</Button>
             </form>
 
-            <h3>You're Playlists</h3>
+            <h3>My Playlists</h3>
 
             <div className="card-container">
                 { playlist.map((list) => (
@@ -83,6 +86,7 @@ function Library() {
                     </div>
                 ))}
             </div>
+            <Footer/>
         </>
     );
 }

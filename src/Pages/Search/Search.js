@@ -1,10 +1,11 @@
-import {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import "./Search.css";
 import Searchbar from "../../Components/SearchBar/Searchbar";
 import spotifyAuth, {AccessContext} from "../../Context/SpotifyAuth";
 import Button from "../../Components/Button/Button";
 import Player from "../../Components/Player/Player";
+import Footer from "../../Components/Footer/Footer";
 
 
 
@@ -38,32 +39,34 @@ function Search() {
 
     return (
         <>
-            <div className="searchbar-wrapper">
-            <Searchbar placeholderValue="Artist,Album"
-                       barName="searchbar"
-                       inputValue={searchInput}
-                       changeHandler={(e)=> setSearchInput(e.target.value)}></Searchbar>
-            <Button buttonType="submit" variant="searchButton" handleClick={searchAll}>Search</Button>
-            </div>
-            <h3>Your Search Results</h3>
-            <div className="card-container">
-                { musicData.map((track) => (
-                    <div className="card" key={musicData.id}>
-                        <img src={track.album.images[0].url} alt="cover"/>
-                        <div className="card-info">
-                            <p>Artist:{track.artists[0].name} </p>
-                            <p>Track:{track.name}</p>
-                            <p>Album:{track.album.name}</p>
+            <div className="search">
+                <div className="searchbar-wrapper">
+                <Searchbar placeholderValue="Search your favourite number "
+                           barName="searchbar"
+                           inputValue={searchInput}
+                           changeHandler={(e)=> setSearchInput(e.target.value)}></Searchbar>
+                <Button buttonType="submit" variant="searchButton" handleClick={searchAll}>Search</Button>
+                </div>
+                <h3>Your Search Results</h3>
+                <div className="card-container">
+                    { musicData.map((track) => (
+                        <div className="card" key={musicData.id}>
+                            <img src={track.album.images[0].url} alt="cover"/>
+                            <div className="card-info">
+                                <p>Artist:{track.artists[0].name} </p>
+                                <p>Track:{track.name}</p>
+                                <p>Album:{track.album.name}</p>
+                            </div>
+                            <button type="button" onClick="">Play</button>
+                            <button type="button">Add To playlist</button>
                         </div>
-                        <button type="button" onClick="">Play</button>
-                        <button type="button">Add To playlist</button>
-                    </div>
-                ))}
+                    ))}
+                </div>
+                <div>
+                    <Player accessToken={accessToken}/>
+                </div>
             </div>
-            <div>
-                <Player accessToken={accessToken} trackUri=""/>
-            </div>
-
+            <Footer/>
         </>
     );
 }

@@ -1,11 +1,11 @@
 import React from 'react';
-import spotifyPlayer from 'react-spotify-web-playback'
-import SpotifyWebPlayer from "react-spotify-web-playback";
+
+import SpotifyPlayer from "react-spotify-web-playback";
 
 function Player({accessToken, trackUri}) {
-
+if(!accessToken) return null
     return (
-        <SpotifyWebPlayer token={accessToken} uris={trackUri ? [trackUri]:[]}></SpotifyWebPlayer>
+        <SpotifyPlayer token={accessToken} uris={trackUri ? [trackUri]:[]}></SpotifyPlayer>
     );
 }
 
