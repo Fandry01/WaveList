@@ -4,13 +4,17 @@ import {AccessContext} from "../../Context/SpotifyAuth";
     import Footer from "../../Components/Footer/Footer";
     import "./Library.css"
     import Button from "../../Components/Button/Button";
+    import {AuthContext} from "../../Context/AuthContext";
 function Library() {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const[playlist,setPlaylists] = useState([]);
     const {accessToken} = useContext(AccessContext);
-    console.log(accessToken)
+    const {user :{sub}} = useContext(AuthContext);
+
+
+
 
     async function createPlayList(e) {
         e.preventDefault();
@@ -21,11 +25,11 @@ function Library() {
                 {
                     name: name,
                     description: description,
-                    public: false
+                    public: true
                 },
                 {
                     headers: {
-                        'Authorization': 'Bearer ',
+                        'Authorization': `Bearer ${accessToken}`,
                         'Content-Type': 'application/json'
                     }
                 }
@@ -63,6 +67,8 @@ function Library() {
 
     return (
         <>
+            <h2 className="user-welcome"> Welcome <span>{sub}</span></h2>
+
             <h3> Create A New Playlist</h3>
 
             <form onSubmit={createPlayList} className="playlist-maker">

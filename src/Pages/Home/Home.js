@@ -4,6 +4,7 @@ import axios from "axios";
 import register from "../Register/Register";
 import {useNavigate} from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
+import Button from "../../Components/Button/Button";
 
 const spotify_client_id = '23765694ea9d4e41a76fca78df125f67';
 const spotify_client_secret = '9e8d35a5b3754daa93e373f9cf8b9ca3';
@@ -43,7 +44,7 @@ function Home() {
                     <h3>Where Waves Are Created</h3>
                     <p>Listen to your favorite songs and create your own playlists</p>
                 </span>
-                <button className="homebutton" onClick={navigateToRegister}>REGISTER</button>
+                <Button variant="homebutton" handleClick={navigateToRegister}>Register</Button>
             </div>
             <div className="right-head">
 

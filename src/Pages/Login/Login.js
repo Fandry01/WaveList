@@ -57,10 +57,10 @@ function Login() {
         "playlist-modify-public",
         "user-read-playback-state",
         "app-remote-control",
-        "streaming"
+        "streaming",
     ]
 
-    const loginUrl = `https://accounts.spotify.com/authorize?client_id=${spotify_client_id}&redirect_uri=${redirect_uri}&scopes=${scopes.join("%20")}&response_type=code&show_dialogue=true`
+    const loginUrl = `https://accounts.spotify.com/authorize?client_id=${spotify_client_id}&redirect_uri=${redirect_uri}&scope=${scopes.join("%20")}&response_type=code&show_dialogue=true`
 
 
 

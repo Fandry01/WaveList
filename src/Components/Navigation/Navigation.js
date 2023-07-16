@@ -16,14 +16,14 @@ function Navigation() {
                         <NavLink to="/" className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
                         >Home</NavLink>
                     </li>
-                    <li>
+                    { isAuth && <li>
                         <NavLink className={({isActive})=> isActive ? 'active-menu-link': 'default-menu-link'}
                                  to={"/Search"}>Search</NavLink>
-                    </li>
-                    <li>
+                    </li>}
+                    {isAuth && <li>
                         <NavLink className={({isActive})=> isActive ? 'active-menu-link': 'default-menu-link'}
                                  to={"/library"}>Library</NavLink>
-                    </li>
+                    </li>}
                     <li>
                         <NavLink className={({isActive})=> isActive ? 'active-menu-link': 'default-menu-link'}
                         to={"/login"}>Login</NavLink>

@@ -38,7 +38,8 @@ function login(jwt_token, redirect){
         isAuth: true,
         user:{
             username:decodedToken.username,
-            id:decodedToken.id
+            id:decodedToken.id,
+            sub:decodedToken.sub
         },
         status:"done"
 

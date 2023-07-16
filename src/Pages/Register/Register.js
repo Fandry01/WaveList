@@ -3,6 +3,7 @@ import axios from "axios";
 import './Register.css';
 import Button from "../../Components/Button/Button";
 import Footer from "../../Components/Footer/Footer";
+import {useNavigate} from "react-router-dom";
 
 function Register() {
     const [email,setEmail] = useState('')
@@ -10,6 +11,7 @@ function Register() {
     const [password,setPassword] = useState('')
     const [errorMessage, setErrormessage] = useState(false);
 
+   const navigate = useNavigate()
     async function handleSubmit(e){
         e.preventDefault();
         setErrormessage(false);
@@ -21,7 +23,10 @@ function Register() {
                 password:password,
                 role:["user"],
             })
-            console.log("registratie gelukt");
+            if(response.status === 200){
+            navigate("/login")
+            }
+
         }catch (e){
             console.error("registratie mislukt",e)
             setErrormessage(true);

@@ -12,8 +12,9 @@ import Footer from "../../Components/Footer/Footer";
 
 function Search() {
     const [searchInput, setSearchInput] = useState('')
-
     const [musicData, setMusicData] = useState([]);
+    const [playlists, setPlaylists] = useState([]);
+    const [selectedPlaylistId, setSelectedPlaylistId] = useState('');
 
     const {accessToken} = useContext(AccessContext);
     console.log(accessToken);
@@ -32,8 +33,51 @@ function Search() {
        console.log(artistID);
         setMusicData(artistID.data.tracks.items);
         console.log(artistID.data.tracks.items);
-
     }
+
+    useEffect(()=>{
+        async function getPlaylist(){
+            try{
+                const response = await axios.get('https://api.spotify.com/v1/me/playlists', {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                })
+                setPlaylists(response.data.items);
+                console.log(playlists)
+            }
+            catch (e){
+                console.log(e);
+            }
+        }
+        getPlaylist();
+    },[])
+
+
+    const addTrackToPlaylist = async (trackId) => {
+        if (!selectedPlaylistId) {
+            alert('Please select a playlist');
+            return;
+        }
+
+        await axios({
+            method: 'post',
+            url: `https://api.spotify.com/v1/playlists/${selectedPlaylistId}/tracks`,
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                'Content-Type': 'application/json',
+            },
+            data: {
+                uris: [`spotify:track:${trackId}`],
+            },
+        });
+    };
+
+
+
+
+
+
 
 
 
@@ -47,6 +91,23 @@ function Search() {
                            changeHandler={(e)=> setSearchInput(e.target.value)}></Searchbar>
                 <Button buttonType="submit" variant="searchButton" handleClick={searchAll}>Search</Button>
                 </div>
+                <div>
+                    <h3>Choose your Playlist</h3>
+                    {playlists.length > 0 && (
+                        <select
+                            className="dropdownList"
+                            value={selectedPlaylistId}
+                            onChange={(e) => setSelectedPlaylistId(e.target.value)}
+                        >
+                            <option value="">Select a Playlist</option>
+                            {playlists.map((playlist) => (
+                                <option key={playlist.id} value={playlist.id}>
+                                    {playlist.name}
+                                </option>
+                            ))}
+                        </select>
+                    )}
+                </div>
                 <h3>Your Search Results</h3>
                 <div className="card-container">
                     { musicData.map((track) => (
@@ -57,8 +118,10 @@ function Search() {
                                 <p>Track:{track.name}</p>
                                 <p>Album:{track.album.name}</p>
                             </div>
+                            console.log(track.uri);
+                            <button className="add-list" onClick={() =>addTrackToPlaylist(track.uri)}>Add to Playlist</button>
                             <button type="button" onClick="">Play</button>
-                            <button type="button">Add To playlist</button>
+
                         </div>
                     ))}
                 </div>

@@ -41,6 +41,14 @@ input::placeholder {
 .searchButton:hover{
 
 }
+
+.dropdownList{
+    color: white;
+    width: 400px;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color:#5A5A5A ;
+}
 .card-container{
     display: flex;
     flex-direction: row;
