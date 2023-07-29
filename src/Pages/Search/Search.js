@@ -6,6 +6,7 @@ import spotifyAuth, {AccessContext} from "../../Context/SpotifyAuth";
 import Button from "../../Components/Button/Button";
 import Player from "../../Components/Player/Player";
 import Footer from "../../Components/Footer/Footer";
+import PlayTracks from "../../Helper/PlayTracks";
 
 
 
@@ -15,6 +16,7 @@ function Search() {
     const [musicData, setMusicData] = useState([]);
     const [playlists, setPlaylists] = useState([]);
     const [selectedPlaylistId, setSelectedPlaylistId] = useState('');
+    const [song,setSong]= useState('');
 
     const {accessToken} = useContext(AccessContext);
     console.log(accessToken);
@@ -63,15 +65,22 @@ function Search() {
         await axios({
             method: 'post',
             url: `https://api.spotify.com/v1/playlists/${selectedPlaylistId}/tracks`,
+            data: {
+                'uris': [`${trackId}`],
+                'position':0
+            },
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
-            },
-            data: {
-                uris: [`spotify:track:${trackId}`],
-            },
+            }
         });
     };
+
+
+    function AddTrackToPlayer(){
+
+    }
+
 
 
 
@@ -117,16 +126,17 @@ function Search() {
                                 <p>Artist:{track.artists[0].name} </p>
                                 <p>Track:{track.name}</p>
                                 <p>Album:{track.album.name}</p>
+                                <p>uri:{track.uri}</p>
                             </div>
-                            console.log(track.uri);
                             <button className="add-list" onClick={() =>addTrackToPlaylist(track.uri)}>Add to Playlist</button>
-                            <button type="button" onClick="">Play</button>
+                            <button type="button" onClick={()=>setSong(track.uri)}>Play</button>
 
                         </div>
                     ))}
                 </div>
                 <div>
-                    <Player accessToken={accessToken}/>
+
+                    <Player accessToken={accessToken} trackUri={song}/>
                 </div>
             </div>
             <Footer/>
