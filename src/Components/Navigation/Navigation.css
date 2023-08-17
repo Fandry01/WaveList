@@ -26,7 +26,7 @@ nav a:visited,a:link{
     text-decoration: none;
 }
 nav a:hover{
-    color: #ff1aff;
+    color: springgreen;
 }
 ul{
     list-style: none;
@@ -60,5 +60,5 @@ li{
 .logout-button:hover{
     cursor: pointer;
     background: white;
-    color: #ff1aff;
+    color: springgreen;
 }

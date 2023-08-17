@@ -5,11 +5,13 @@ import {AccessContext} from "../../Context/SpotifyAuth";
     import "./Library.css"
     import Button from "../../Components/Button/Button";
     import {AuthContext} from "../../Context/AuthContext";
+    import Player from "../../Components/Player/Player";
 function Library() {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const[playlist,setPlaylists] = useState([]);
+    const [playlist,setPlaylists] = useState([]);
+    const [playTheList, setPlayTheList] = useState([])
     const {accessToken} = useContext(AccessContext);
     const {user :{sub}} = useContext(AuthContext);
 
@@ -89,9 +91,11 @@ function Library() {
                             <p>Name:{list.name} </p>
                             <p>Tracks:{list.tracks.total}</p>
                         </div>
+                        <button type="button" onClick={()=>setPlayTheList(list.uri)}>Play</button>
                     </div>
                 ))}
             </div>
+            <Player accessToken={accessToken} trackUri={playTheList}/>
             <Footer/>
         </>
     );

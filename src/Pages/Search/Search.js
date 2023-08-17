@@ -31,7 +31,7 @@ function Search() {
             'Authorization': ' Bearer ' + accessToken
          }
      }
-       const artistID = await axios.get(`https://api.spotify.com/v1/search?q=${searchInput}&type=track&limit=10`, searchParam)
+       const artistID = await axios.get(`https://api.spotify.com/v1/search?q=${searchInput}&type=track&limit=15`, searchParam)
        console.log(artistID);
         setMusicData(artistID.data.tracks.items);
         console.log(artistID.data.tracks.items);
@@ -77,11 +77,6 @@ function Search() {
     };
 
 
-    function AddTrackToPlayer(){
-
-    }
-
-
 
 
 
@@ -94,11 +89,11 @@ function Search() {
         <>
             <div className="search">
                 <div className="searchbar-wrapper">
-                <Searchbar placeholderValue="Search your favourite number "
-                           barName="searchbar"
-                           inputValue={searchInput}
-                           changeHandler={(e)=> setSearchInput(e.target.value)}></Searchbar>
-                <Button buttonType="submit" variant="searchButton" handleClick={searchAll}>Search</Button>
+                    <Searchbar placeholderValue="Search your favourite number "
+                               barName="searchbar"
+                               inputValue={searchInput}
+                               changeHandler={(e)=> setSearchInput(e.target.value)}></Searchbar>
+                    <Button buttonType="submit" variant="searchButton" handleClick={searchAll}>Search</Button>
                 </div>
                 <div>
                     <h3>Choose your Playlist</h3>
@@ -126,7 +121,6 @@ function Search() {
                                 <p>Artist:{track.artists[0].name} </p>
                                 <p>Track:{track.name}</p>
                                 <p>Album:{track.album.name}</p>
-                                <p>uri:{track.uri}</p>
                             </div>
                             <button className="add-list" onClick={() =>addTrackToPlaylist(track.uri)}>Add to Playlist</button>
                             <button type="button" onClick={()=>setSong(track.uri)}>Play</button>
@@ -134,7 +128,7 @@ function Search() {
                         </div>
                     ))}
                 </div>
-                <div>
+                <div className="player-container">
 
                     <Player accessToken={accessToken} trackUri={song}/>
                 </div>

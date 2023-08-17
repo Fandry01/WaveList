@@ -24,14 +24,14 @@ function Navigation() {
                         <NavLink className={({isActive})=> isActive ? 'active-menu-link': 'default-menu-link'}
                                  to={"/library"}>Library</NavLink>
                     </li>}
-                    <li>
+                    {!isAuth &&<li>
                         <NavLink className={({isActive})=> isActive ? 'active-menu-link': 'default-menu-link'}
                         to={"/login"}>Login</NavLink>
-                    </li>
-                    <li>
+                    </li>}
+                    {!isAuth&&<li>
                         <NavLink className={({isActive})=> isActive ? 'active-menu-link': 'default-menu-link'}
                         to={"/register"}>Register</NavLink>
-                    </li>
+                    </li>}
                 </ul>
                 {isAuth &&
                 <Button buttonType="button" handleClick={logout} variant="logout-button">logout</Button>}

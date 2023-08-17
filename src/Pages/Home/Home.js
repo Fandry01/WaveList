@@ -10,6 +10,8 @@ const spotify_client_id = '23765694ea9d4e41a76fca78df125f67';
 const spotify_client_secret = '9e8d35a5b3754daa93e373f9cf8b9ca3';
 const redirect_uri ="http://localhost:3000";
 
+
+console.log(process.env);
 function Home() {
     const [accessToken, setAccessToken] = useState("");
     const [spotifyToken,setSpotifyToken] = useState("");

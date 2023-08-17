@@ -8,9 +8,9 @@ function SpotifyAuthContextProvider({children}) {
     isAccess:false,
 });
     const [spotifyToken, setSpotifyToken] = useState("");
-    const  spotifyid = process.env.SPOTIFY_CLIENT_SECRET
-    const spotify_client_id = '23765694ea9d4e41a76fca78df125f67';
-    const spotify_client_secret = '9e8d35a5b3754daa93e373f9cf8b9ca3';
+
+    const spotify_client_id='23765694ea9d4e41a76fca78df125f67'
+    const spotify_client_secret='9e8d35a5b3754daa93e373f9cf8b9ca3'
     const redirect_uri ="http://localhost:3000";
 
 
@@ -54,7 +54,7 @@ useEffect(()=>{
                         params: {
                             'grant_type': 'authorization_code',
                             'code':`${spotifyToken}`,
-                            'redirect_uri': `${redirect_uri}`,
+                            'redirect_uri':`${redirect_uri}`,
                             'client_id': `${spotify_client_id}`,
                             'client_secret': `${spotify_client_secret}`
                         }

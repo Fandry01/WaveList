@@ -5,6 +5,7 @@ h3 {
 .user-welcome{
     color: white;
 }
+
 .playlist-maker{
     display: flex;
     flex-direction: column;
@@ -27,4 +28,12 @@ h3 {
 }
 .list-button:hover{
     background-color: springgreen;
+}
+
+.card-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 500px;
+    flex-wrap: nowrap;
 }
