@@ -44,17 +44,17 @@ stap 7: ga naar je library page en klik op play bij je playlists.
 
 3.Demo
 ----
-Stap1 Hompage
+Stap: 1 Hompage.
 ![HomePageDemo](src/Assets/img/HomePageDemo.jpg)
-Stap2 registreer
+Stap: 2 registreer.
 ![RegisterPageDemo](src/Assets/img/RegisterPageDemo.jpg)
-Stap3 Login
+Stap: 3 Login.
 ![LoginPageDemo](src/Assets/img/LoginPageDemo.jpg)
-Stap4 Login van je spotify Account
+Stap: 4 Login met je spotify Account.
 ![SpotifyLoginPage](src/Assets/img/SpotifyLoginPage.jpg)
-Stap 5 maak een playlist
+Stap: 5 maak een playlist.
 ![LibraryPageDemo](src/Assets/img/LibraryPageDemo.jpg)
-Stap6 zoek je favoriete nummer en speel het af en add het aan je playlist.
+Stap: 6 zoek je favoriete nummer en speel het af en add het aan je playlist.
 ![SearchPageDemo](src/Assets/img/SearchPageDemo.jpg)
 
 
