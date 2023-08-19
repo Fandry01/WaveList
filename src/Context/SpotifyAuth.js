@@ -55,8 +55,8 @@ useEffect(()=>{
                             'grant_type': 'authorization_code',
                             'code':`${spotifyToken}`,
                             'redirect_uri':`${redirect_uri}`,
-                            'client_id': `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`,
-                            'client_secret': `${process.env.REACT_APP_SPOTIFY_CLIENT_SECRET}`
+                            'client_id': `${spotify_client_id}`,
+                            'client_secret': `${spotify_client_secret}`
                         }
                     });
                 console.log(res)

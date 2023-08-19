@@ -22,12 +22,14 @@ WaveList is een eenvoudige streaming app waarmee je muziek luisteren en Playlist
 Om WaveList te installeren, moet je React, Node.js en npm op je machine hebben geïnstalleerd. Kloon dan deze repository en voer `npm install`uit 
 om alles te installeren.
 
+
+
 2.Gebruik
 -------
 Stap 1: Om de app te starten, voer je`npm start`uit en open je`http://localhost:3000`in je browser.
 
 Stap 2: Je komt dan op de Home pagina terecht klik op registreren om je te registreren je wordt daarna geredirect naar de Login pagina daar log je in en daarna krijg je 
-de Spotify login scherm je kan natuurlijk je eigen Spotify login gebruiken heb je dat niet gebruik de mijne : gebruikersnaam:  en wachtwoord: .
+de Spotify login scherm je kan natuurlijk je eigen Spotify login gebruiken heb je dat niet gebruik de mijne : gebruikersnaam: fendi01 en wachtwoord:Doesburghof116 .
 
 Stap 3: Zodra je bent ingelogd wordt je geredirect naar de Home Page vanuit daar kan je kiezen om gelijk naar de library te gaan om een playlist
 aan te maken of naar bestaande playlists luisteren.
@@ -41,6 +43,8 @@ Stap 5: wanneer je zoekt naar een nummer krijg je onderaan je zoekresultaten je 
 stap 6: onderaan de pagina zie je een speler daar wordt het nummer afgespeelt.
 
 stap 7: ga naar je library page en klik op play bij je playlists.
+
+
 
 3.Demo
 ----
