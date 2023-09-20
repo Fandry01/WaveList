@@ -1,22 +1,19 @@
 import './App.css';
-import './Pages/Home/Home';
+import './Pages/Home/home';
 
 import React, {useEffect, useState} from "react";
 import {Route, Routes} from "react-router-dom";
-import Home from "./Pages/Home/Home";
-import Register from "./Pages/Register/Register";
-import Login from "./Pages/Login/Login";
+import Home from "./Pages/Home/home";
+import Register from "./Pages/Register/register";
+import Login from "./Pages/Login/login";
 import Navigation from "./Components/Navigation/Navigation";
 import Search from "./Pages/Search/Search";
-import Library from "./Pages/Library/Library";
-
-
-
+import Library from "./Pages/Library/library";
 
 
 function App() {
 
-return (
+    return (
         <>
             <Navigation/>
             <Routes>
@@ -28,7 +25,7 @@ return (
             </Routes>
 
         </>
-  );
+    );
 }
 
 export default App;

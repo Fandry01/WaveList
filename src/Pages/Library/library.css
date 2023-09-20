@@ -2,38 +2,42 @@
 h3 {
     color: white;
 }
-.user-welcome{
+
+.user-welcome {
     color: white;
 }
 
-.playlist-maker{
+.playlist-maker {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 400px;
 }
-.input-play{
+
+.input-play {
     background-color: #434343;
     border: none;
     padding: 10px;
     border-radius: 10px;
     max-width: 350px;
 }
-.list-button{
+
+.list-button {
     border-radius: 25px;
     width: 150px;
     cursor: pointer;
     padding: 10px;
     border: none;
 }
-.list-button:hover{
+
+.list-button:hover {
     background-color: springgreen;
 }
 
-.card-container{
+.card-container {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    height: 400px;
+    height: 500px;
     flex-wrap: nowrap;
 }

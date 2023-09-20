@@ -1,18 +1,19 @@
 import React from 'react';
+import Button from "../Button/Button";
 
-function Card(props) {
+function card({cardName,cardInfo}) {
     return (
-        <div className="card" key="">
+        <div className={cardName} key="">
             <img src="" alt="cover"/>
-            <div className="card-info">
+            <div className={cardInfo}>
                 <p>Artist:{} </p>
                 <p>Track:{}</p>
                 <p>Album:{}</p>
             </div>
-            <button type="button">Play</button>
-            <button type="button">Add To playlist</button>
+            <Button buttonType="button">Play</Button>
+            <Button buttonType="button">Add to playlist</Button>
         </div>
     );
 }
 
-export default Card;
+export default card;

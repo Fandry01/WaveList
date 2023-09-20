@@ -1,10 +1,10 @@
-export default function PlayTracks(musicData){
+export default function PlayTracks(musicData) {
 
-    if(musicData) {
+    if (musicData) {
 
-    const randomSong = musicData.sort(() => Math.random() - Math.random())
-        .find(() => true);
-    console.log(randomSong);
-    return randomSong;
+        const randomSong = musicData.sort(() => Math.random() - Math.random())
+            .find(() => true);
+        console.log(randomSong);
+        return randomSong;
     }
 }

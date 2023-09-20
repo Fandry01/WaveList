@@ -1,25 +1,25 @@
-    import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import {AccessContext} from "../../Context/SpotifyAuth";
-    import Footer from "../../Components/Footer/Footer";
-    import "./Library.css"
-    import Button from "../../Components/Button/Button";
-    import {AuthContext} from "../../Context/AuthContext";
-    import Player from "../../Components/Player/Player";
-function Library() {
+import Footer from "../../Components/Footer/Footer";
+import "./library.css"
+import Button from "../../Components/Button/Button";
+import {AuthContext} from "../../Context/AuthContext";
+import Player from "../../Components/Player/Player";
 
+function Library() {
+    const [loading,setLoading] = useState(false);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [playlist,setPlaylists] = useState([]);
+    const [playlist, setPlaylists] = useState([]);
     const [playTheList, setPlayTheList] = useState([])
     const {accessToken} = useContext(AccessContext);
-    const {user :{sub}} = useContext(AuthContext);
-
-
+    const {user: {sub}} = useContext(AuthContext);
 
 
     async function createPlayList(e) {
         e.preventDefault();
+        setLoading(true);
         try {
             const response = await axios.post(
                 'https://api.spotify.com/v1/users/fendi01/playlists',
@@ -40,12 +40,14 @@ function Library() {
         } catch (e) {
             console.log("wrong way to call the api", e)
         }
-
+        setLoading(false);
 
     }
-    useEffect(()=>{
-        async function allPlaylists(){
-            try{
+
+    useEffect(() => {
+        async function allPlaylists() {
+            setLoading(true);
+            try {
                 const getPlaylists = await axios.get('https://api.spotify.com/v1/me/playlists', {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
@@ -53,18 +55,14 @@ function Library() {
                 })
                 console.log(getPlaylists.data.items);
                 setPlaylists(getPlaylists.data.items);
-            }
-            catch (e){
-
+            } catch (e) {
+                console.log("Could'nt get the playlists", e)
             }
 
         }
-
-    allPlaylists();
-    },[])
-
-
-
+        setLoading(false);
+        allPlaylists();
+    }, [])
 
 
     return (
@@ -76,7 +74,8 @@ function Library() {
             <form onSubmit={createPlayList} className="playlist-maker">
                 <input className="input-play" type="text" value={name} onChange={(e) => setName(e.target.value)}
                        placeholder="Name of Playlist"/>
-                <input className="input-play" type="text" value={description} onChange={(e) => setDescription(e.target.value)}
+                <input className="input-play" type="text" value={description}
+                       onChange={(e) => setDescription(e.target.value)}
                        placeholder="Description of Playlist"/>
                 <Button buttonType="submit" variant="list-button">Create</Button>
             </form>
@@ -84,19 +83,19 @@ function Library() {
             <h3>My Playlists</h3>
 
             <div className="card-container">
-                { playlist.map((list) => (
+                {playlist.map((list) => (
                     <div className="card" key={playlist.id}>
                         <img src={list.images[0].url} alt="cover"/>
                         <div className="card-info">
                             <p>Name:{list.name} </p>
                             <p>Tracks:{list.tracks.total}</p>
                         </div>
-                        <button type="button" onClick={()=>setPlayTheList(list.uri)}>Play</button>
+                        <button type="button" onClick={() => setPlayTheList(list.uri)}>Play</button>
                     </div>
                 ))}
             </div>
             <Player accessToken={accessToken} trackUri={playTheList}/>
-            <Footer/>
+            <Footer footerName="footer"><p>© Made By Fandry Baffour</p></Footer>
         </>
     );
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 import "./Footer.css";
 import {Link} from "react-router-dom";
-function Footer() {
+function Footer({children,footerName}) {
     return (
-        <div className="footer">
-                <p>© Made By Fandry Baffour</p>
-        </div>
+       <footer className={`${footerName}`}>
+           {children}
+       </footer>
     );
 }
 

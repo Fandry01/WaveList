@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-body{
-   background-color: black;
+body {
+    background-color: black;
 }
 
-.Home-wrapper{
+.home-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -15,7 +15,8 @@ body{
     position: relative;
 
 }
-.left-head{
+
+.left-head {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -23,38 +24,43 @@ body{
     height: 100%;
     font-size: 4rem;
 }
-.head-text h4{
+
+.head-text h4 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 40px;
     margin-bottom: 0px;
 }
-.head-text p{
+
+.head-text p {
+    color: white;
     font-size: 25px;
 }
-.right-head{
+
+.right-head {
     background-image: url("/../wavelist/src/Assets/img/devices1.388f6d2.png");
     height: 100%;
     position: relative;
     width: 50%;
 }
 
-.homebutton{
-    width:150px;
+.home-button {
+    width: 150px;
     border: 1px solid white;
     border-radius: 25px;
-    max-height:40px ;
-    background: rgba(0,0,0,0.2);
+    max-height: 40px;
+    background: rgba(0, 0, 0, 0.2);
     color: white;
     padding: 5px;
     text-transform: uppercase;
 }
-.homebutton:hover{
+
+.home-button:hover {
     background-color: white;
     color: black;
     cursor: pointer;
 }
 
-.businesspoints{
+.business-points {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -63,7 +69,7 @@ body{
     margin-top: 10px;
 }
 
-.home-card{
+.home-card {
     background-image: url("../../Assets/img/pexels-yente-van-eynde-2403054.jpg");
     background-size: cover;
     padding: 10rem 0 0;
@@ -74,7 +80,8 @@ body{
     max-height: 300px;
     text-align: center;
 }
-.home-card2{
+
+.home-card2 {
     background-image: url("../../Assets/img/pexels-josh-sorenson-995301.jpg");
     background-size: cover;
     padding: 10rem 0 0;
@@ -84,7 +91,8 @@ body{
     transition: transform 500ms ease;
     max-height: 300px;
 }
-.home-card3{
+
+.home-card3 {
     background-image: url("../../Assets/img/pexels-tirachard-kumtanom-1001850.jpg");
     background-size: cover;
     padding: 10rem 0 0;
@@ -94,57 +102,60 @@ body{
     transition: transform 500ms ease;
     max-height: 300px;
 }
-.home-card:hover{
-    transform: scale(1.05);
 
-}
-.home-card2:hover{
-    transform: scale(1.05);
-
-}
-.home-card3:hover{
+.home-card:hover {
     transform: scale(1.05);
 
 }
 
-.card-content{
+.home-card2:hover {
+    transform: scale(1.05);
+
+}
+
+.home-card3:hover {
+    transform: scale(1.05);
+
+}
+
+.card-content {
     --padding: 0.5rem;
     padding: var(--padding);
     background: linear-gradient(
-    hsl(0 0% 0% / 0),
-    hsl(0 0% 0% / 1)
+            hsl(0 0% 0% / 0),
+            hsl(0 0% 0% / 1)
     );
     color: white;
 }
 
-.card-title{
+.card-title {
     position: relative;
     width: max-content;
     color: white;
 }
 
-.card-title::after{
-    content:"";
+.card-title::after {
+    content: "";
     position: absolute;
     height: 3px;
-    width: calc(100% + var(--padding)) ;
+    width: calc(100% + var(--padding));
     background-color: red;
-    left: calc(var(--padding)* -1);
+    left: calc(var(--padding) * -1);
     transform: scale(0);
     transform-origin: left;
     transition: transform 500ms ease;
 }
 
-.card:hover .card.card-title::after{
+.card:hover .card.card-title::after {
     transform: scale(1);
 }
 
 .card-button:hover,
-.card-button:focus{
+.card-button:focus {
     background-color: white;
 }
 
-.faq{
+.faq {
     color: white;
     width: 100%;
     max-height: 400px;
@@ -152,21 +163,25 @@ body{
     flex-direction: column;
     padding-bottom: 20px;
 }
-.faq-title{
+
+.faq-title {
     display: flex;
     justify-content: center;
     text-transform: uppercase;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 30px;
 }
-.faq article{
+
+.faq article {
     text-align: center;
 }
-.faq article h4{
+
+.faq article h4 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
 }
-.footer{
+
+.footer {
     border-top: 1px solid
 }
 

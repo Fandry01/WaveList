@@ -1,4 +1,4 @@
-.wrapper{
+.wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,44 +7,47 @@
     height: 50rem;
 }
 
-.registerForm{
+.register-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
 }
-.registerForm h3{
-    color:white;
+
+.register-form h3 {
+    color: white;
     display: flex;
     justify-content: center;
 }
-.registerForm input{
+
+.register-form input {
     width: 250px;
     padding-left: 10px;
     border-radius: 25px;
     margin-bottom: 10px;
     border: none;
     height: 45px;
-   background-color: #5A5A5A;
+    background-color: #5A5A5A;
 }
 
-.register-button{
-    border:none;
+.register-button {
+    border: none;
     border-radius: 30px;
     margin-top: 10px;
     width: 260px;
     height: 45px;
     outline: none;
     cursor: pointer;
-    background:white;
-}
-.register-button:hover{
-    background: springgreen;
-    color:black
+    background: white;
 }
 
-.wrong-register{
+.register-button:hover {
+    background: springgreen;
+    color: black
+}
+
+.wrong-register {
     display: flex;
     justify-content: center;
     color: red;

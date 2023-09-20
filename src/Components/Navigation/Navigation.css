@@ -8,7 +8,11 @@
     flex-basis: 1600px;
     background: rgba(0,0,0,0.2);
     color: white;
+    width: 100%;
 
+}
+.nav-box h4{
+    width: 10%
 }
 nav{
     display: flex;
@@ -31,13 +35,13 @@ nav a:hover{
 ul{
     list-style: none;
     display: flex;
-    flex-basis: 300px;
-    justify-content: space-evenly;
-    align-items: center;
+    flex-basis: 90%;
+    justify-content: right;
+
     color: white;
 }
 li{
-    padding-right: 5px;
+    padding-right: 10px;
 }
 
 .active-menu-link {
