@@ -22,9 +22,7 @@ function Search() {
 
 
     async function searchAll() {
-        setLoading(true);
         try {
-
             // een Get request met behulp van de search endpoint om Artist ID te krijgen
             const searchParam = {
                 method: 'GET',
@@ -40,11 +38,11 @@ function Search() {
         } catch (e) {
             console.log("Couldnt retrieve artist data", e);
         }
-        setLoading(false);
+
     }
 
     useEffect(() => {
-        setLoading(true);
+
         async function getPlaylist() {
             try {
                 const response = await axios.get('https://api.spotify.com/v1/me/playlists', {
@@ -58,7 +56,7 @@ function Search() {
                 console.log("Cant retrieve your playlists", e);
             }
         }
-        setLoading(false);
+
         getPlaylist();
     }, [])
 

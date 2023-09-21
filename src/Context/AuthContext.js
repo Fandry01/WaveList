@@ -20,7 +20,12 @@ function AuthContextProvider({children}) {
             void login(storedToken)
 
         } else {
-            void logout()
+            setAuth({
+                ...auth,
+                isAuth: false,
+                user:null,
+                status: "done"
+            })
         }
     }, [])
 

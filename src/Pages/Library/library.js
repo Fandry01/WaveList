@@ -37,6 +37,12 @@ function Library() {
                 }
             );
             console.log(response);
+
+            if (response.status === 201) {
+                alert("Afspeellijst is succesvol aangemaakt!");
+            } else {
+                console.log("Afspeellijst kon niet worden aangemaakt:", response);
+            }
         } catch (e) {
             console.log("wrong way to call the api", e)
         }
@@ -83,6 +89,7 @@ function Library() {
             <h3>My Playlists</h3>
 
             <div className="card-container">
+                {loading &&<p>loading..</p>}
                 {playlist.map((list) => (
                     <div className="card" key={playlist.id}>
                         <img src={list.images[0].url} alt="cover"/>
