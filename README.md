@@ -28,13 +28,18 @@ git clone https://github.com/Fandry01/WaveList
 3. Navigeer naar de gekloonde map: cd WaveList
 
 4. Installeer de benodigde afhankelijkheden met npm: npm install
+5. Maak een nieuw bestand aan: Maak een nieuw bestand met de naam .env aan in de hoofdmap van je React-project.
 
+6. Voeg omgevingsvariabelen toe: Voeg de omgevingsvariabelen toe die je wilt gebruiken in je applicatie.
+REACT_APP_SPOTIFY_CLIENT_ID="23765694ea9d4e41a76fca78df125f67"
+REACT_APP_SPOTIFY_CLIENT_SECRET="9e8pd35a5b3754daa93e373f9cf8b9ca3"
+7. Herstart je ontwikkelingsserver: Als je de ontwikkelingsserver al hebt gestart, moet je deze opnieuw starten zodat de wijzigingen
+in het .env-bestand van kracht worden.Stop de server en start deze opnieuw met het commando npm start.
 
 2.Gebruik
 -------
 1. Om WaveList te starten, voer je het volgende uit: npm start 
 Open vervolgens http://localhost:3000 in je browser.
-
 2. Klik op "Registreren" om een account aan te maken.
 
 3.  Zodra je bent ingelogd wordt je geredirect naar de Home Page vanuit daar kan je kiezen om gelijk naar de library te gaan om een playlist
