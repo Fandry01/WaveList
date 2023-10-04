@@ -33,7 +33,7 @@ function AuthContextProvider({children}) {
         const decodedToken = jwt_decode(jwt_token);
         localStorage.setItem('token', jwt_token);
         setAuth({
-            ...auth,
+                ...auth,
             isAuth: true,
             user: {
                 username: decodedToken.username,

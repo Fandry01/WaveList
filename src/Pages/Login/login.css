@@ -46,7 +46,7 @@
     color: black
 }
 
-.wrong-login {
+.error-message {
     display: flex;
     justify-content: center;
     color: red;

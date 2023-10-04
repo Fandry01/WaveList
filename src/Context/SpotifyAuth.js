@@ -52,11 +52,11 @@ function SpotifyAuthContextProvider({children}) {
                 setAccessToken(res.data.access_token)
                 localStorage.setItem("accessToken", res.data.access_token)
             } catch (e) {
-                console.error(e)
+                console.error("authorization code niet ontvangen",e)
             }
         }
-
         getAccessCode()
+
     }, [spotifyToken])
 
 

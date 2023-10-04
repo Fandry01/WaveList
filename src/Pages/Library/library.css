@@ -41,3 +41,10 @@ h3 {
     height: 500px;
     flex-wrap: nowrap;
 }
+
+.error-message{
+    color: red
+}
+.loading-message{
+    color: white;
+}

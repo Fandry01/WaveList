@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import './home.css';
-import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import Button from "../../Components/Button/Button";
@@ -16,7 +15,7 @@ function home() {
 
     return (
         <>
-            <div className="Home-wrapper">
+            <header className="Home-wrapper">
                 <div className="left-head">
                 <span className="head-text">
                     <h3>Where Waves Are Created</h3>
@@ -27,9 +26,9 @@ function home() {
                 <div className="right-head">
 
                 </div>
-            </div>
+            </header>
 
-            <div className="business-points">
+            <section className="business-points">
                 <div className="home-card">
                     <div className="card-content">
                         <h2 className="card-title">
@@ -56,8 +55,9 @@ function home() {
 
                     </div>
                 </div>
-            </div>
-            <div className="faq">
+            </section>
+
+            <section className="faq">
                 <h3 className="faq-title">Faq</h3>
                 <div className="faq-articles">
                     <article>
@@ -75,7 +75,7 @@ function home() {
                         <p>Yes, you need an subscription to listen and create playlists</p>
                     </article>
                 </div>
-            </div>
+            </section>
 
             <Footer footerName="footer"><p>© Made By Fandry Baffour</p></Footer>
 

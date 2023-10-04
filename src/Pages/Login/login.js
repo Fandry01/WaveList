@@ -7,25 +7,20 @@ import {AccessContext} from "../../Context/SpotifyAuth";
 import Footer from "../../Components/Footer/Footer";
 
 
-const spotify_client_id = '23765694ea9d4e41a76fca78df125f67';
-const spotify_client_secret = '9e8d35a5b3754daa93e373f9cf8b9ca3';
 const redirect_uri = "http://localhost:3000";
 
 function login() {
-
     const {login, isAuth} = useContext(AuthContext);
     const {spotifyLogin} = useContext(AccessContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrormessage] = useState(false);
-    const [accessToken, setAccessToken] = useState("");
-    const [spotifyToken, setSpotifyToken] = useState("");
 
-
+    const spotify_client_id = '23765694ea9d4e41a76fca78df125f67';
+    const redirect_uri = "http://localhost:3000";
     async function handleSubmit(e) {
         e.preventDefault();
         setErrormessage(false);
-
         try {
             //post request naar de server
             const response = await axios.post(' https://frontend-educational-backend.herokuapp.com/api/auth/signin', {
@@ -39,10 +34,9 @@ function login() {
             spotifyLogin();
 
         } catch (e) {
-            console.error("onjuiste e-mail en wachtwoord combinatie.")
+            console.error("onjuiste e-mail en wachtwoord combinatie.",e);
             // error message naar de UI
-            setErrormessage(true)
-            console.error(e);
+            setErrormessage(true);
         }
 
 
@@ -78,13 +72,10 @@ function login() {
                         </Button>
                     </form>
                     {errorMessage &&
-                        <span className="wrong-login">
-                onjuiste e-mail en wachtwoord combinatie.
-                </span>}
-
-
+                        <span className="error-message">
+                        onjuiste e-mail en wachtwoord combinatie.
+                        </span>}
                 </div>
-
                 :
                 <div className="signIn-wrapper">
                     <a href={loginUrl} onClick={spotifyLogin} className="signIn-button">Sign in with spotify</a>

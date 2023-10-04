@@ -23,16 +23,14 @@ function register() {
                 username: username,
                 password: password,
                 role: ["user"],
-            })
+            },)
             if (response.status === 200) {
                 navigate("/login")
             }
-
         } catch (e) {
             console.error("registratie mislukt", e)
             setErrormessage(true);
         }
-
     }
 
     return (
@@ -49,9 +47,9 @@ function register() {
                     <Button buttonType="submit" variant="register-button">Register</Button>
                 </form>
                 {errorMessage &&
-                    <span className="wrong-register">
+                    <span className="error-message">
                             Registratie is mislukt probeer opnieuw.
-                        </span>}
+                    </span>}
             </div>
             <Footer footerName="footer"><p>© Made By Fandry Baffour</p></Footer>
         </>

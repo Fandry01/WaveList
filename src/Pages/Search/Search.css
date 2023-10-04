@@ -94,3 +94,9 @@ input::placeholder {
     padding: 0px;
     margin: 1px;
 }
+.error-message{
+    color: red;
+}
+.loading-message {
+color: white;
+}

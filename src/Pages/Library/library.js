@@ -8,18 +8,21 @@ import {AuthContext} from "../../Context/AuthContext";
 import Player from "../../Components/Player/Player";
 
 function Library() {
+    const [error, setError] = useState(false);
     const [loading,setLoading] = useState(false);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [playlist, setPlaylists] = useState([]);
     const [playTheList, setPlayTheList] = useState([])
     const {accessToken} = useContext(AccessContext);
-    const {user: {sub}} = useContext(AuthContext);
+
 
 
     async function createPlayList(e) {
+        const controller = new AbortController();
         e.preventDefault();
         setLoading(true);
+        setError(false);
         try {
             const response = await axios.post(
                 'https://api.spotify.com/v1/users/fendi01/playlists',
@@ -33,26 +36,27 @@ function Library() {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`,
                         'Content-Type': 'application/json'
-                    }
+                    },
+
                 }
             );
             console.log(response);
-
             if (response.status === 201) {
                 alert("Afspeellijst is succesvol aangemaakt!");
             } else {
                 console.log("Afspeellijst kon niet worden aangemaakt:", response);
             }
         } catch (e) {
+            setError(true);
             console.log("wrong way to call the api", e)
         }
         setLoading(false);
-
     }
 
     useEffect(() => {
+        setLoading(true);
+        setError(false);
         async function allPlaylists() {
-            setLoading(true);
             try {
                 const getPlaylists = await axios.get('https://api.spotify.com/v1/me/playlists', {
                     headers: {
@@ -61,10 +65,11 @@ function Library() {
                 })
                 console.log(getPlaylists.data.items);
                 setPlaylists(getPlaylists.data.items);
-            } catch (e) {
-                console.log("Could'nt get the playlists", e)
-            }
 
+            } catch (e) {
+                console.log("Could'nt get the playlists", e);
+                setError(false);
+            }
         }
         setLoading(false);
         allPlaylists();
@@ -73,23 +78,24 @@ function Library() {
 
     return (
         <>
-            <h2 className="user-welcome"> Welcome <span>{sub}</span></h2>
+                <h2 className="user-welcome"> Welcome</h2>
 
-            <h3> Create A New Playlist</h3>
-
-            <form onSubmit={createPlayList} className="playlist-maker">
-                <input className="input-play" type="text" value={name} onChange={(e) => setName(e.target.value)}
-                       placeholder="Name of Playlist"/>
-                <input className="input-play" type="text" value={description}
-                       onChange={(e) => setDescription(e.target.value)}
-                       placeholder="Description of Playlist"/>
-                <Button buttonType="submit" variant="list-button">Create</Button>
-            </form>
+                <h3> Create A New Playlist</h3>
+            {loading&& <span className="loading-message">Loading...</span>}
+            {error&& <span className="error-message">Er is iets misgegaan met het ophalen van de data</span>}
+                <form onSubmit={createPlayList} className="playlist-maker">
+                    <input className="input-play" type="text" value={name} onChange={(e) => setName(e.target.value)}
+                           placeholder="Name of Playlist"/>
+                    <input className="input-play" type="text" value={description}
+                           onChange={(e) => setDescription(e.target.value)}
+                           placeholder="Description of Playlist"/>
+                    <Button buttonType="submit" variant="list-button">Create</Button>
+                </form>
 
             <h3>My Playlists</h3>
-
+            {loading&& <span>Loading...</span>}}
+            {error&& <span>Er is iets misgegaan met het ophalen van de data</span>}
             <div className="card-container">
-                {loading &&<p>loading..</p>}
                 {playlist.map((list) => (
                     <div className="card" key={playlist.id}>
                         <img src={list.images[0].url} alt="cover"/>

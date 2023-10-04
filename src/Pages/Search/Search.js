@@ -8,9 +8,9 @@ import Footer from "../../Components/Footer/Footer";
 import {AccessContext} from "../../Context/SpotifyAuth";
 
 
-
 function Search() {
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
     const [searchInput, setSearchInput] = useState('');
     const [musicData, setMusicData] = useState([]);
     const [playlists, setPlaylists] = useState([]);
@@ -22,6 +22,8 @@ function Search() {
 
 
     async function searchAll() {
+        setLoading(true);
+        setError(false)
         try {
             // een Get request met behulp van de search endpoint om Artist ID te krijgen
             const searchParam = {
@@ -37,37 +39,49 @@ function Search() {
             console.log(artistID.data.tracks.items);
         } catch (e) {
             console.log("Couldnt retrieve artist data", e);
+            setError(true);
         }
-
+        setLoading(false);
     }
 
     useEffect(() => {
+        const controller = new AbortController();
 
         async function getPlaylist() {
+            setLoading(true);
+            setError(false);
             try {
                 const response = await axios.get('https://api.spotify.com/v1/me/playlists', {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
-                    }
+                    },
+                    signal: controller.signal
                 })
                 setPlaylists(response.data.items);
-                console.log(playlists)
+                console.log(playlists);
             } catch (e) {
                 console.log("Cant retrieve your playlists", e);
+                setError(true);
             }
+            setLoading(false);
         }
 
         getPlaylist();
+
+        return function cleanup() {
+            controller.abort()
+        }
     }, [])
 
 
     const addTrackToPlaylist = async (trackId) => {
+        setLoading(true);
+        setError(false);
         try {
             if (!selectedPlaylistId) {
                 alert('Please select a playlist');
                 return;
             }
-
             await axios({
                 method: 'post',
                 url: `https://api.spotify.com/v1/playlists/${selectedPlaylistId}/tracks`,
@@ -78,17 +92,18 @@ function Search() {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                     'Content-Type': 'application/json',
-                }
+                },
             });
         } catch (e) {
             console.log("Couldnt retrieve playlist data", e)
+            setError(true);
         }
+        setLoading(false);
     };
 
 
     return (
         <>
-            {loading &&<p>loading..</p>}
             <div className="search">
                 <div className="searchbar-wrapper">
                     <Searchbar placeholderValue="Search your favourite number "
@@ -97,8 +112,9 @@ function Search() {
                                changeHandler={(e) => setSearchInput(e.target.value)}></Searchbar>
                     <Button buttonType="submit" variant="search-button" handleClick={searchAll}>Search</Button>
                 </div>
-                <div>
-                    {loading &&<p>loading..</p>}
+                <section>
+                    {loading && <span className="loading-message">loading..</span>}
+                    {error && <span className="error-message">Fout bij het opslaan van data..</span>}
                     <h3>Choose your Playlist</h3>
                     {playlists.length > 0 && (
                         <select
@@ -114,10 +130,11 @@ function Search() {
                             ))}
                         </select>
                     )}
-                </div>
+                </section>
                 <h3>Your Search Results</h3>
-                <div className= "card-container">
-                    {loading &&<p>loading..</p>}
+                <section className="card-container">
+                    {loading && <p>loading..</p>}
+                    {error && <p>Er is iets misgegaan met het ophalen van de data</p>}
                     {musicData.map((track) => (
                         <div className="card" key={musicData.id}>
                             <img src={track.album.images[0].url} alt="cover"/>
@@ -129,15 +146,13 @@ function Search() {
                             <Button variant="add-list" handleClick={() => addTrackToPlaylist(track.uri)}>Add to
                                 Playlist</Button>
                             <Button buttonType="button" handleClick={() => setSong(track.uri)}>Play</Button>
-
-
                         </div>
                     ))}
-                </div>
+                </section>
 
-                <div className="player-container">
+                <section className="player-container">
                     <Player accessToken={accessToken} trackUri={song}/>
-                </div>
+                </section>
             </div>
             <Footer footerName="footer"><p>© Made By Fandry Baffour</p></Footer>
         </>
