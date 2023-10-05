@@ -22,8 +22,8 @@ function Library() {
         const controller = new AbortController();
         e.preventDefault();
         setLoading(true);
-        setError(false);
         try {
+            setError(false);
             const response = await axios.post(
                 'https://api.spotify.com/v1/users/fendi01/playlists',
                 // '{\n    "name": "New Playlist",\n    "description": "New playlist description",\n    "public": false\n}',
@@ -37,7 +37,6 @@ function Library() {
                         'Authorization': `Bearer ${accessToken}`,
                         'Content-Type': 'application/json'
                     },
-
                 }
             );
             console.log(response);
@@ -55,9 +54,9 @@ function Library() {
 
     useEffect(() => {
         setLoading(true);
-        setError(false);
         async function allPlaylists() {
             try {
+                setError(false);
                 const getPlaylists = await axios.get('https://api.spotify.com/v1/me/playlists', {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
@@ -68,7 +67,7 @@ function Library() {
 
             } catch (e) {
                 console.log("Could'nt get the playlists", e);
-                setError(false);
+                setError(true);
             }
         }
         setLoading(false);
@@ -95,7 +94,7 @@ function Library() {
             <h3>My Playlists</h3>
             {loading&& <span>Loading...</span>}}
             {error&& <span>Er is iets misgegaan met het ophalen van de data</span>}
-            <div className="card-container">
+            <section className="card-container">
                 {playlist.map((list) => (
                     <div className="card" key={playlist.id}>
                         <img src={list.images[0].url} alt="cover"/>
@@ -106,7 +105,7 @@ function Library() {
                         <button type="button" onClick={() => setPlayTheList(list.uri)}>Play</button>
                     </div>
                 ))}
-            </div>
+            </section>
             <Player accessToken={accessToken} trackUri={playTheList}/>
             <Footer footerName="footer"><p>© Made By Fandry Baffour</p></Footer>
         </>

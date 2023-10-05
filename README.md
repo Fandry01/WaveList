@@ -64,7 +64,7 @@ Ps: het duurt FF voor dat het afspeelt
 ----
 Stap: 1 Hompage.
 ![HomePageDemo](src/Assets/img/HomePageDemo.jpg)
-Stap: 2 registrerem.
+Stap: 2 registreren.
 ![RegisterPageDemo](src/Assets/img/RegisterPageDemo.jpg)
 Stap: 3 Login.
 ![LoginPageDemo](src/Assets/img/LoginPageDemo.jpg)

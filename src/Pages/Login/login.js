@@ -7,7 +7,6 @@ import {AccessContext} from "../../Context/SpotifyAuth";
 import Footer from "../../Components/Footer/Footer";
 
 
-const redirect_uri = "http://localhost:3000";
 
 function login() {
     const {login, isAuth} = useContext(AuthContext);
@@ -29,17 +28,12 @@ function login() {
             })
             //jwt token meegeven aan de login functie
             login(response.data.accessToken);
-
-
             spotifyLogin();
-
         } catch (e) {
             console.error("onjuiste e-mail en wachtwoord combinatie.",e);
             // error message naar de UI
             setErrormessage(true);
         }
-
-
     }
 
     const scopes = [
@@ -80,7 +74,6 @@ function login() {
                 <div className="signIn-wrapper">
                     <a href={loginUrl} onClick={spotifyLogin} className="signIn-button">Sign in with spotify</a>
                 </div>
-
             }
             <Footer footerName="footer"><p>© Made By Fandry Baffour</p></Footer>
         </>

@@ -20,11 +20,10 @@ function Search() {
     const {accessToken} = useContext(AccessContext);
     console.log(accessToken);
 
-
     async function searchAll() {
         setLoading(true);
-        setError(false)
         try {
+            setError(false);
             // een Get request met behulp van de search endpoint om Artist ID te krijgen
             const searchParam = {
                 method: 'GET',
@@ -45,17 +44,14 @@ function Search() {
     }
 
     useEffect(() => {
-        const controller = new AbortController();
-
         async function getPlaylist() {
             setLoading(true);
-            setError(false);
             try {
+                setError(false);
                 const response = await axios.get('https://api.spotify.com/v1/me/playlists', {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     },
-                    signal: controller.signal
                 })
                 setPlaylists(response.data.items);
                 console.log(playlists);
@@ -65,19 +61,15 @@ function Search() {
             }
             setLoading(false);
         }
-
         getPlaylist();
 
-        return function cleanup() {
-            controller.abort()
-        }
     }, [])
 
 
     const addTrackToPlaylist = async (trackId) => {
         setLoading(true);
-        setError(false);
         try {
+            setError(false);
             if (!selectedPlaylistId) {
                 alert('Please select a playlist');
                 return;

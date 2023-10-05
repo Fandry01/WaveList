@@ -6,7 +6,6 @@ import Button from "../../Components/Button/Button";
 
 
 function home() {
-
     const navigate = useNavigate()
     const navigateToRegister = () => {
         // 👇️ navigate to /register
@@ -24,7 +23,6 @@ function home() {
                     <Button variant="home-button" handleClick={navigateToRegister}>Register</Button>
                 </div>
                 <div className="right-head">
-
                 </div>
             </header>
 
