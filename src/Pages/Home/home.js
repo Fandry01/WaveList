@@ -14,7 +14,7 @@ function home() {
 
     return (
         <>
-            <header className="Home-wrapper">
+            <header className="home-wrapper">
                 <div className="left-head">
                 <span className="head-text">
                     <h3>Where Waves Are Created</h3>
