@@ -46,7 +46,7 @@ Open vervolgens http://localhost:3000 in je browser.
 aan te maken of naar bestaande playlists luisteren.
 
 4. Je wordt doorgestuurd naar het Spotify-loginvenster. 
-Je kunt je eigen Spotify-inloggegevens gebruiken of de volgende gebruiken: gebruikersnaam: fendi01 en wachtwoord: Doesburghof116.
+Je kunt je eigen Spotify-inloggegevens gebruiken of de volgende gebruiken: gebruikersnaam: fendi01 en wachtwoord: Silvoldestraat100 .
 
 5. Eenmaal ingelogd, kom je op de Home-pagina terecht, waar je toegang hebt tot je bibliotheek en bestaande afspeellijsten.
 
@@ -68,7 +68,7 @@ Stap: 2 registreren.
 ![RegisterPageDemo](src/Assets/img/RegisterPageDemo.jpg)
 Stap: 3 Login.
 ![LoginPageDemo](src/Assets/img/LoginPageDemo.jpg)
-Stap: 4 Login met je spotify-account.
+Stap: 4 Login met je spotify-account Gebruikersnaam: fendi01 Wachtwoord Silvoldestraat100.
 ![SpotifyLoginPage](src/Assets/img/SpotifyLoginPage.jpg)
 Stap: 5 playlist maken.
 ![LibraryPageDemo](src/Assets/img/LibraryPageDemo.jpg)
